@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viagem Fácil</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #003366;
+            padding: 20px;
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .menu li a:hover {
+            color: #ffcc00;
+        }
+
+        .btn-login {
+            background-color: #ffcc00;
+            color: #003366;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #e6b800;
+        }
+
+        /* Seção de busca */
+        .search-section {
+            padding: 40px;
+            background-color: #e6f0ff;
+            text-align: center;
+        }
+
+        .search-section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .search-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background-color: #ffcc00;
+            color: #003366;
+        }
+
+        .login-link {
+            display: block;
+            margin-top: 20px;
+            color: #003366;
+            font-weight: bold;
+        }
+
+        .login-link:hover {
+            color: #ffcc00;
+        }
+
+        /* Destinos Populares */
+        .destinos {
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .destinos h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .destino-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .destino-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .destino-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .destino-card h4 {
+            margin: 15px 0;
+        }
+
+        .destino-card p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .btn-detalhes {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn-detalhes:hover {
+            background-color: #ffcc00;
+            color: #003366;
+        }
+
+        /* Pacotes */
+        .pacotes {
+            padding: 40px;
+            background-color: #e6f0ff;
+        }
+
+        .pacotes h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pacote-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .pacote-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .pacote-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .pacote-card h4 {
+            margin: 15px 0;
+        }
+
+        .pacote-card p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Dicas */
+        .dicas {
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .dicas h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .dica {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .dica img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Sobre Nós */
+        .sobre {
+            padding: 40px;
+            background-color: #e6f0ff;
+        }
+
+        .sobre h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .equipe {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .membro {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .membro img {
+            width: 100px;
+            border-radius: 50%;
+        }
+
+        /* Contato */
+        .contato {
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .contato h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contato form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contato label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contato input, .contato textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contato button {
+            padding: 10px 20px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contato button:hover {
+            background-color: #ffcc00;
+            color: #003366;
+        }
+
+        .informacoes-contato {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #003366;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .redes-sociais a img {
+            width: 30px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Viagem Fácil</h1>
+            </div>
+            <ul class="menu">
+                <li><a href="#" class="nav-link" data-origem="São Paulo" data-destino="Rio de Janeiro">Comprar</a></li>
+                <li><a href="#" class="nav-link" data-origem="São Paulo" data-destino="Rio de Janeiro">Reservas</a></li>
+                <li><a href="#" class="nav-link" data-origem="São Paulo" data-destino="Rio de Janeiro">Check-in</a></li>
+                <li><a href="#" class="nav-link" data-origem="São Paulo" data-destino="Rio de Janeiro">Ofertas</a></li>
+                <li><a href="#" class="nav-link" data-origem="São Paulo" data-destino="Rio de Janeiro">Programa Fidelidade</a></li>
+                <li><a href="#" class="nav-link" data-origem="São Paulo" data-destino="Rio de Janeiro">Envios e Encomendas</a></li>
+            </ul>
+            <a href="login.html" class="btn-login">Login</a>
+        </nav>
+    </header>
+    
+    <section class="search-section">
+        <h2>Encontre sua próxima viagem</h2>
+        <p>Descubra os melhores destinos e pacotes com apenas alguns cliques!</p>
+        <div class="input-group">
+            <label for="origem">Origem:</label>
+            <input type="text" id="origem" placeholder="Digite a cidade de origem">
+        </div>
+        <div class="input-group">
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" placeholder="Digite a cidade de destino">
+        </div>
+        <div class="actions">
+            <button id="buscar">Buscar</button>
+        </div>
+        <a href="login.html" class="login-link">Já tem conta? Faça login</a>
+    </section>
+
+    <section class="destinos">
+        <h3>Destinos Populares</h3>
+        <div class="destino-grid">
+            <div class="destino-card">
+                <img src="destino1.jpg" alt="Destino 1">
+                <h4>Rio de Janeiro</h4>
+                <p>Praias, cultura e muita diversão!</p>
+                <a href="resultados.html?origem=São Paulo&destino=Rio de Janeiro" class="btn-detalhes">Ver Detalhes</a>
+            </div>
+            <div class="destino-card">
+                <img src="destino2.jpg" alt="Destino 2">
+                <h4>São Paulo</h4>
+                <p>O coração financeiro do Brasil!</p>
+                <a href="resultados.html?origem=São Paulo&destino=São Paulo" class="btn-detalhes">Ver Detalhes</a>
+            </div>
+            <div class="destino-card">
+                <img src="destino3.jpg" alt="Destino 3">
+                <h4>Salvador</h4>
+                <p>História e festas incríveis!</p>
+                <a href="resultados.html?origem=São Paulo&destino=Salvador" class="btn-detalhes">Ver Detalhes</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="pacotes">
+        <h3>Pacotes Especiais</h3>
+        <div class="pacote-grid">
+            <div class="pacote-card">
+                <img src="pacote1.jpg" alt="Pacote 1">
+                <h4>Pacote Rio de Janeiro</h4>
+                <p>5 dias e 4 noites a partir de R$ 1.500</p>
+                <a href="resultados.html?origem=São Paulo&destino=Rio de Janeiro" class="btn-detalhes">Ver Detalhes</a>
+            </div>
+            <div class="pacote-card">
+                <img src="pacote2.jpg" alt="Pacote 2">
+                <h4>Pacote Salvador</h4>
+                <p>7 dias e 6 noites a partir de R$ 1.200</p>
+                <a href="resultados.html?origem=São Paulo&destino=Salvador" class="btn-detalhes">Ver Detalhes</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="dicas">
+        <h3>Dicas de Viagem</h3>
+        <div class="dica">
+            <img src="dica1.jpg" alt="Dica 1">
+            <p>Prepare sua mala com antecedência e não esqueça dos documentos!</p>
+        </div>
+        <div class="dica">
+            <img src="dica2.jpg" alt="Dica 2">
+            <p>Pesquise sobre o destino para aproveitar ao máximo sua viagem!</p>
+        </div>
+    </section>
+
+    <section class="sobre">
+        <h3>Sobre Nós</h3>
+        <p>Somos uma agência dedicada a proporcionar experiências inesquecíveis aos nossos clientes.</p>
+        <div class="equipe">
+            <div class="membro">
+                <img src="membro1.jpg" alt="Membro 1">
+                <h4>João Silva</h4>
+                <p>Especialista em destinos internacionais.</p>
+            </div>
+            <div class="membro">
+                <img src="membro2.jpg" alt="Membro 2">
+                <h4>Maria Oliveira</h4>
+                <p>Consultora de viagens personalizadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contato">
+        <h3>Contato</h3>
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" rows="5" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <div class="informacoes-contato">
+            <p>Email: contato@viagemfacil.com</p>
+            <p>Telefone: (11) 1234-5678</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Viagem Fácil. Todos os direitos reservados.</p>
+        <div class="redes-sociais">
+            <a href="#"><img src="facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="instagram.png" alt="Instagram"></a>
+            <a href="#"><img src="twitter.png" alt="Twitter"></a>
+        </div>
+    </footer>
+
+    <script>
+        const buscarButton = document.getElementById('buscar');
+        buscarButton.addEventListener('click', async () => {
+            const origem = document.getElementById('origem').value;
+            const destino = document.getElementById('destino').value;
+            
+            // Faz a requisição para a API Flask
+            const response = await fetch(`/buscar?origem=${origem}&destino=${destino}`);
+            const viagens = await response.json();
+    
+            if (viagens.length > 0) {
+                let resultadosHTML = '';
+                viagens.forEach(viagem => {
+                    resultadosHTML += `
+                        <div class="resultado-card">
+                            <h4>${viagem.destino}</h4>
+                            <p>Preço: R$ ${viagem.preco}</p>
+                            <p>Duração: ${viagem.duracao}</p>
+                        </div>
+                    `;
+                });
+                document.getElementById('resultados').innerHTML = resultadosHTML;
+            } else {
+                document.getElementById('resultados').innerHTML = '<p>Nenhum resultado encontrado.</p>';
+            }
+        });
+    </script>
+  <section id="resultados" class="resultados">
+    <!-- Os resultados das buscas serão exibidos aqui -->
+</section>
+  
+</body>
+</html>

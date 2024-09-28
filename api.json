@@ -1,0 +1,23 @@
+[
+  {
+      "id": 1,
+      "origem": "São Paulo",
+      "destino": "Rio de Janeiro",
+      "preco": "R$ 500",
+      "descricao": "Pacote de 3 dias com hotel incluso."
+  },
+  {
+      "id": 2,
+      "origem": "São Paulo",
+      "destino": "Salvador",
+      "preco": "R$ 700",
+      "descricao": "Pacote de 5 dias com guia turístico."
+  },
+  {
+      "id": 3,
+      "origem": "São Paulo",
+      "destino": "Fortaleza",
+      "preco": "R$ 600",
+      "descricao": "Pacote de 4 dias com passagem aérea."
+  }
+]
